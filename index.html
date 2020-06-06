@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="images/dice.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Condensed:ital@1&family=Roboto+Slab&family=Rosario:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Ludo</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <h1 class="heading">Simple Ludo</h1>
+
+    <div class="game-contain">
+      
+      <div class="game">
+
+        <div class="player player-A">
+          <h2>Player-A</h2>
+          <div class="token-container" id="player-A"></div>
+        </div>
+        <div class="instruction">
+          <div class="pinhole"></div>
+          <h2>Important Instruction</h2>
+          <p>The game automatically pauses when you are presented with a choice. Please click on the token of choice on which you want to apply the move</p>
+        </div>
+
+        <div id="main"></div> <!-- main game area -->
+
+        <div class="player player-B">
+          <h2>Player-B</h2>
+          <div class="token-container" id="player-B"></div>
+        </div>
+
+        <div class="roll">
+          <button class="roll-button" id="roll">
+            Roll!
+          </button>
+          <div class="roll-number" id="die">
+            6
+          </div>
+        </div>
+
+        <div class="player-name">
+          <span id="player-name">Player-A</span><span id="game-status">'s turn</span>
+        </div>
+
+        <div class="player winner-tokens">
+          <h2>Winner Tokens</h2>
+          <div class="token-container winner-container" id="winner"></div>
+        </div>
+        <div class="play-again">
+          <button class="roll-button play-again-button" id="play-again">Play Again</button>
+        </div>
+
+      </div>
+    </div>
+
+    <form class="dieval-form" id="dieval-form">
+      <input type="number" class="dieval" id="dieval" min="1" max="6"></input>
+      <button class="roll-button test-roll" id="test-roll" type="submit">
+        Test Roll!
+      </button>
+    </form>
+    
+    <script src="index.js"></script>
+  </body>
+</html>
