@@ -416,7 +416,7 @@ function tokenWin(token, id) {
   token.x = undefined;
   token.y = undefined;
   won[id] = true;
-  const player = createToken("player-" + id[0], id);
+  const player = createToken("player-" + id[0], id + "win");
   document.getElementById("winner").appendChild(player);
   if (id[0] === "A") {
     wonA++;
