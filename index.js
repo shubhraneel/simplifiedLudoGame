@@ -203,7 +203,7 @@ function turn() {
         document.getElementById("player-name").textContent = "Player-B";
         isMoveOver = true;
         noMoveSound.play();
-      } 
+      }
     }
     if (lockedA === 0 && A1.x === A2.x && A1.y === A2.y) {
       move(A1, dieRoll, "A1");
@@ -317,7 +317,14 @@ function move(token, num, id) {
       (id[0] === "A" && token.x === 0 && token.y === 1) ||
       (id[0] === "B" && token.x === nCells - 1 && token.y === nCells - 2)
     ) {
-      tokenWin(token, id);
+      if (i === num - 1) {
+        tokenWin(token, id);
+      } else {
+        token.x = old.x;
+        token.y = old.y;
+        moveInBoard(token, id, i+1);
+        noMoveSound.play();
+      }
       isMoveOver = true;
       turnChange();
       return;
@@ -328,7 +335,9 @@ function move(token, num, id) {
       (id === "A1" && token.x === A2.x && token.y === A2.y) ||
       (id === "A2" && token.x === A1.x && token.y === A1.y)
     )
-      setTimeout(() => {separateDisplay(token, "A")}, 200*num);
+      setTimeout(() => {
+        separateDisplay(token, "A");
+      }, 200 * num);
     if (token.x === B1.x && token.y === B1.y) lock(B1, "B1");
     if (token.x === B2.x && token.y === B2.y) lock(B2, "B2");
   } else if (id[0] === "B") {
@@ -336,7 +345,9 @@ function move(token, num, id) {
       (id === "B1" && token.x === B2.x && token.y === B2.y) ||
       (id === "B2" && token.x === B1.x && token.y === B1.y)
     )
-      setTimeout(() => {separateDisplay(token, "B")}, 200*num)
+      setTimeout(() => {
+        separateDisplay(token, "B");
+      }, 200 * num);
     if (token.x === A1.x && token.y === A1.y) lock(A1, "A1");
     if (token.x === A2.x && token.y === A2.y) lock(A2, "A2");
   }
