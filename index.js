@@ -22,6 +22,7 @@ let lockSound = new Audio("audio/lock.mp3");
 let winSound = new Audio("audio/win.mp3");
 let winnerSound = new Audio("audio/winner.mp3");
 
+createBoard();
 initialize();
 
 function handleClick(token, num, id) {
@@ -45,14 +46,12 @@ document
       board.removeChild(child);
       child = board.lastElementChild;
     }
-
+    createBoard();
     nCells = document.getElementById("change-rows-input").value;
     initialize();
   });
 
 function initialize() {
-  createBoard();
-
   let tokenElement = document.getElementById("A1");
   tokenElement && tokenElement.parentNode.removeChild(tokenElement);
   tokenElement = document.getElementById("A2");
@@ -291,7 +290,9 @@ function start(token, id) {
   }
   isMoveOver = true;
   moveSound.play();
-  setTimeout(() => {soundEnd(moveSound)}, 1500)
+  setTimeout(() => {
+    soundEnd(moveSound);
+  }, 1500);
   turnChange();
 }
 
@@ -339,7 +340,9 @@ function move(token, num, id) {
   }
   isMoveOver = true;
   moveSound.play();
-  setTimeout(() => {soundEnd(moveSound)}, 1500)
+  setTimeout(() => {
+    soundEnd(moveSound);
+  }, 1500);
   turnChange();
 }
 
@@ -373,12 +376,12 @@ function turnChange() {
 }
 
 function moveInBoard(token, id, i) {
-  const copy = {...token}
+  const copy = { ...token };
   setTimeout(() => {
     document.getElementById(id).style.transform = `translateX(${
       100 * copy.x
     }%) translateY(${100 * copy.y}%)`;
-  }, 200*i);
+  }, 200 * i);
 }
 
 function lock(token, id) {
