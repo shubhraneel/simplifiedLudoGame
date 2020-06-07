@@ -326,7 +326,7 @@ function move(token, num, id) {
       (id === "A1" && token.x === A2.x && token.y === A2.y) ||
       (id === "A2" && token.x === A1.x && token.y === A1.y)
     )
-      separateDisplay(token, "A");
+      setTimeout(() => {separateDisplay(token, "A")}, 200*num);
     if (token.x === B1.x && token.y === B1.y) lock(B1, "B1");
     if (token.x === B2.x && token.y === B2.y) lock(B2, "B2");
   } else if (id[0] === "B") {
@@ -334,7 +334,7 @@ function move(token, num, id) {
       (id === "B1" && token.x === B2.x && token.y === B2.y) ||
       (id === "B2" && token.x === B1.x && token.y === B1.y)
     )
-      separateDisplay(token, "B");
+      setTimeout(() => {separateDisplay(token, "B")}, 200*num)
     if (token.x === A1.x && token.y === A1.y) lock(A1, "A1");
     if (token.x === A2.x && token.y === A2.y) lock(A2, "A2");
   }
