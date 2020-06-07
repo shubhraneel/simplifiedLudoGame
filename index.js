@@ -291,6 +291,7 @@ function start(token, id) {
   }
   isMoveOver = true;
   moveSound.play();
+  setTimeout(() => {soundEnd(moveSound)}, 1500)
   turnChange();
 }
 
@@ -338,6 +339,7 @@ function move(token, num, id) {
   }
   isMoveOver = true;
   moveSound.play();
+  setTimeout(() => {soundEnd(moveSound)}, 1500)
   turnChange();
 }
 
@@ -429,4 +431,9 @@ function scaleFix(token, id) {
   document.getElementById(id).style.transform = `translateX(${
     100 * token.x
   }%) translateY(${100 * token.y}%)`;
+}
+
+function soundEnd(sound) {
+  sound.pause();
+  sound.currentTime = 0;
 }
