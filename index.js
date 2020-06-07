@@ -203,10 +203,11 @@ function turn() {
         document.getElementById("player-name").textContent = "Player-B";
         isMoveOver = true;
         noMoveSound.play();
-      } else if (lockedA === 0 && A1.x === A2.x && A1.y === A2.y) {
-        move(A1, dieRoll, "A1");
-        scaleFix(A2, "A2");
-      }
+      } 
+    }
+    if (lockedA === 0 && A1.x === A2.x && A1.y === A2.y) {
+      move(A1, dieRoll, "A1");
+      scaleFix(A2, "A2");
     }
   } else if (turnWho === 2) {
     if (dieRoll === 6) {
@@ -231,10 +232,11 @@ function turn() {
         document.getElementById("player-name").textContent = "Player-A";
         isMoveOver = true;
         noMoveSound.play();
-      } else if (lockedB === 0 && B1.x === B2.x && B1.y === B2.y) {
-        move(B1, dieRoll, "B1");
-        scaleFix(B2, "B2");
       }
+    }
+    if (lockedB === 0 && B1.x === B2.x && B1.y === B2.y) {
+      move(B1, dieRoll, "B1");
+      scaleFix(B2, "B2");
     }
   }
 }
