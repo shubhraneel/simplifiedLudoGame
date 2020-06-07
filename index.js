@@ -34,19 +34,21 @@ document.getElementById("dieval-form").addEventListener("submit", (event) => {
   rollDie("manual", parseInt(document.getElementById("dieval").value));
 });
 document.getElementById("play-again").addEventListener("click", initialize);
-document.getElementById("change-rows-form").addEventListener("submit", (event) => {
-  event.preventDefault();
-  //clear board
-  let board = document.getElementById("main")
-  let child = board.lastElementChild;
-  while(child) {
-    board.removeChild(child);
-    child = board.lastElementChild;
-  }
+document
+  .getElementById("change-rows-form")
+  .addEventListener("submit", (event) => {
+    event.preventDefault();
+    //clear board
+    let board = document.getElementById("main");
+    let child = board.lastElementChild;
+    while (child) {
+      board.removeChild(child);
+      child = board.lastElementChild;
+    }
 
-  nCells = document.getElementById("change-rows-input").value;
-  initialize();
-})
+    nCells = document.getElementById("change-rows-input").value;
+    initialize();
+  });
 
 function initialize() {
   createBoard();
@@ -202,6 +204,9 @@ function turn() {
         document.getElementById("player-name").textContent = "Player-B";
         isMoveOver = true;
         noMoveSound.play();
+      } else if (lockedA === 0 && A1.x === A2.x && A1.y === A2.y) {
+        move(A1, dieRoll, "A1");
+        scaleFix(A2, "A2");
       }
     }
   } else if (turnWho === 2) {
@@ -227,6 +232,9 @@ function turn() {
         document.getElementById("player-name").textContent = "Player-A";
         isMoveOver = true;
         noMoveSound.play();
+      } else if (lockedB === 0 && B1.x === B2.x && B1.y === B2.y) {
+        move(B1, dieRoll, "B1");
+        scaleFix(B2, "B2");
       }
     }
   }
@@ -412,4 +420,10 @@ function gameWin(id) {
   }
   document.querySelector(".player-name").className += " emphasis-winner";
   winnerSound.play();
+}
+
+function scaleFix(token, id) {
+  document.getElementById(id).style.transform = `translateX(${
+    100 * token.x
+  }%) translateY(${100 * token.y}%)`;
 }
