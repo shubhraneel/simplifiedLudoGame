@@ -15,7 +15,6 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
-  overflow-y: hidden;
 }
 
 .heading {
@@ -329,7 +328,7 @@ input[type=number]::-webkit-outer-spin-button {
 .play-again {
   width: 19rem;
   position: absolute;
-  top: 30%;
+  top: 20%;
   right: 0;
 }
 
@@ -337,26 +336,34 @@ input[type=number]::-webkit-outer-spin-button {
   width: 100%;
 }
 
-@media (max-width: 1000px) {
+.change-rows {
+  top: 40%;
+}
+
+.change-rows-button {
+  width: 13rem;
+}
+
+@media (max-width: 1250px) {
   html {
     font-size: 50%;
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
   html {
     font-size: 35%;
   }
 }
 
-@media(max-width: 600px) {
+@media(max-width: 700px) {
   html {
     font-size: 25%;
   }
 }
 
-@media(max-width: 400px) {
+@media(max-width: 500px) {
   html {
-    font-size: 20%;
+    font-size: 18%;
   }
 }

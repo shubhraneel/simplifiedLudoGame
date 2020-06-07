@@ -23,7 +23,6 @@ let winSound = new Audio("audio/win.mp3");
 let winnerSound = new Audio("audio/winner.mp3");
 
 initialize();
-createBoard(nCells);
 
 function handleClick(token, num, id) {
   if (!isMoveOver) move(token, num, id);
@@ -35,8 +34,23 @@ document.getElementById("dieval-form").addEventListener("submit", (event) => {
   rollDie("manual", parseInt(document.getElementById("dieval").value));
 });
 document.getElementById("play-again").addEventListener("click", initialize);
+document.getElementById("change-rows-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  //clear board
+  let board = document.getElementById("main")
+  let child = board.lastElementChild;
+  while(child) {
+    board.removeChild(child);
+    child = board.lastElementChild;
+  }
+
+  nCells = document.getElementById("change-rows-input").value;
+  initialize();
+})
 
 function initialize() {
+  createBoard();
+
   let tokenElement = document.getElementById("A1");
   tokenElement && tokenElement.parentNode.removeChild(tokenElement);
   tokenElement = document.getElementById("A2");
@@ -103,7 +117,7 @@ function createCell(type) {
   return cell;
 }
 
-function createBoard(nCells) {
+function createBoard() {
   //top row
   const topRow = document.createElement("div");
   for (let i = 0; i < nCells; i++) {
