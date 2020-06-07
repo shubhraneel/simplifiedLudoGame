@@ -250,7 +250,7 @@ input[type=number]::-webkit-outer-spin-button {
   font-family: Montserrat, sans-serif;
   font-size: 2.5rem;
   font-weight: 600;
-  color: rgb(255, 196, 86)
+  color: rgb(255, 179, 37);
 }
 
 .winner-tokens {
