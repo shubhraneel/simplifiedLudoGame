@@ -290,6 +290,7 @@ function start(token, id) {
     });
     lockedB--;
   }
+  collisionCheck(token, id, 0)
   isMoveOver = true;
   moveSound.play();
   setTimeout(() => {
@@ -330,6 +331,16 @@ function move(token, num, id) {
       return;
     }
   }
+  collisionCheck(token, id, num)
+  isMoveOver = true;
+  moveSound.play();
+  setTimeout(() => {
+    soundEnd(moveSound);
+  }, 1500);
+  turnChange();
+}
+
+function collisionCheck(token, id, num) {
   if (id[0] === "A") {
     if (
       (id === "A1" && token.x === A2.x && token.y === A2.y) ||
@@ -351,12 +362,6 @@ function move(token, num, id) {
     if (token.x === A1.x && token.y === A1.y) lock(A1, "A1");
     if (token.x === A2.x && token.y === A2.y) lock(A2, "A2");
   }
-  isMoveOver = true;
-  moveSound.play();
-  setTimeout(() => {
-    soundEnd(moveSound);
-  }, 1500);
-  turnChange();
 }
 
 function separateDisplay(token, id) {
