@@ -308,7 +308,7 @@ function move(token, num, id) {
     else if (token.x === nCells - 1 && token.y !== nCells - 1) token.y++;
     else if (token.x !== 0 && token.y === nCells - 1) token.x--;
     else if (token.x !== nCells - 1 && token.y === 0) token.x++;
-    moveInBoard(token, id);
+    moveInBoard(token, id, i);
     if (
       (id[0] === "A" && token.x === 0 && token.y === 1) ||
       (id[0] === "B" && token.x === nCells - 1 && token.y === nCells - 2)
@@ -370,10 +370,13 @@ function turnChange() {
   }
 }
 
-function moveInBoard(token, id) {
-  document.getElementById(id).style.transform = `translateX(${
-    100 * token.x
-  }%) translateY(${100 * token.y}%)`;
+function moveInBoard(token, id, i) {
+  const copy = {...token}
+  setTimeout(() => {
+    document.getElementById(id).style.transform = `translateX(${
+      100 * copy.x
+    }%) translateY(${100 * copy.y}%)`;
+  }, 200*i);
 }
 
 function lock(token, id) {

@@ -126,7 +126,7 @@ div {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all .4s;
+  transition: all .2s;
 }
 
 .token-outside {
