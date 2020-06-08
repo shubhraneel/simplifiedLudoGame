@@ -256,12 +256,14 @@ function start(token, id) {
     document.getElementById("main").appendChild(playerA);
     token.x = 0;
     token.y = 0;
-    document.getElementById("A1").addEventListener("click", () => {
-      handleClick(A1, dieRoll, "A1");
-    });
-    document.getElementById("A2").addEventListener("click", () => {
-      handleClick(A2, dieRoll, "A2");
-    });
+    if (!won.A1)
+      document.getElementById("A1").addEventListener("click", () => {
+        handleClick(A1, dieRoll, "A1");
+      });
+    if (!won.A2)
+      document.getElementById("A2").addEventListener("click", () => {
+        handleClick(A2, dieRoll, "A2");
+      });
     lockedA--;
   } else if (id === "B1" || id === "B2") {
     const playerBTokens = document.getElementById("player-B");
@@ -282,15 +284,17 @@ function start(token, id) {
     document.getElementById("main").appendChild(playerB);
     token.x = nCells - 1;
     token.y = nCells - 1;
-    document.getElementById("B1").addEventListener("click", () => {
-      handleClick(B1, dieRoll, "B1");
-    });
-    document.getElementById("B2").addEventListener("click", () => {
-      handleClick(B2, dieRoll, "B2");
-    });
+    if (!won.B1)
+      document.getElementById("B1").addEventListener("click", () => {
+        handleClick(B1, dieRoll, "B1");
+      });
+    if (!won.B2)
+      document.getElementById("B2").addEventListener("click", () => {
+        handleClick(B2, dieRoll, "B2");
+      });
     lockedB--;
   }
-  collisionCheck(token, id, 0)
+  collisionCheck(token, id, 0);
   isMoveOver = true;
   moveSound.play();
   setTimeout(() => {
@@ -323,15 +327,15 @@ function move(token, num, id) {
       } else {
         token.x = old.x;
         token.y = old.y;
-        moveInBoard(token, id, i+1);
+        moveInBoard(token, id, i + 1);
         noMoveSound.play();
       }
       isMoveOver = true;
-      turnChange();
+      if (wonA < 2 && wonB < 2) turnChange();
       return;
     }
   }
-  collisionCheck(token, id, num)
+  collisionCheck(token, id, num);
   isMoveOver = true;
   moveSound.play();
   setTimeout(() => {
