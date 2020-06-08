@@ -197,6 +197,12 @@ function turn() {
         } else {
           start(A2, "A2");
         }
+      } else if (lockedA === 0 && wonA === 1) {
+        if(won.A1) {
+          move(A2, dieRoll, "A2")
+        } else {
+          move(A2, dieRoll, "A2")
+        }
       }
     } else {
       if ((lockedA === 1 && wonA === 0) || (lockedA === 0 && wonA === 1)) {
@@ -225,6 +231,12 @@ function turn() {
           start(B1, "B1");
         } else {
           start(B2, "B2");
+        }
+      } else if (lockedB === 0 && wonB === 1) {
+        if(won.B1) {
+          move(B2, dieRoll, "B2")
+        } else {
+          move(B2, dieRoll, "B2")
         }
       }
     } else {
