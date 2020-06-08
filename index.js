@@ -52,6 +52,13 @@ document
   });
 
 function initialize() {
+  let winners = document.getElementById("winner");
+  let child = winners.lastElementChild;
+  while (child) {
+      winners.removeChild(child);
+      child = winner.lastElementChild;
+  }
+
   let tokenElement = document.getElementById("A1");
   tokenElement && tokenElement.parentNode.removeChild(tokenElement);
   tokenElement = document.getElementById("A2");
