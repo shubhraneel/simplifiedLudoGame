@@ -218,6 +218,16 @@ function turn() {
         noMoveSound.play();
       }
     }
+    if (
+      (lockedA === 0 && wonA === 0) ||
+      (dieRoll === 6 && lockedA === 1 && wonA === 0)
+    ) {
+      if (A1.x === 0 && A1.y <= 7 && A1.y > 0) {
+        move(A1, dieRoll, "A1");
+      } else if (A2.x === 0 && A2.y <= 7 && A2.y > 0) {
+        move(A2, dieRoll, "A2");
+      }
+    }
     if (lockedA === 0 && A1.x === A2.x && A1.y === A2.y) {
       move(A1, dieRoll, "A1");
       scaleFix(A2, "A2");
@@ -251,6 +261,20 @@ function turn() {
         document.getElementById("player-name").textContent = "Player-A";
         isMoveOver = true;
         noMoveSound.play();
+      }
+    }
+    if (
+      (lockedB === 0 && wonB === 0) ||
+      (dieRoll === 6 && lockedB === 1 && wonB === 0)
+    ) {
+      if (B1.x === nCells - 1 && B1.y >= nCells - 8 && B1.y < nCells - 1) {
+        move(B1, dieRoll, "B1");
+      } else if (
+        B2.x === nCells - 1 &&
+        B2.y >= nCells - 8 &&
+        B2.y < nCells - 1
+      ) {
+        move(B2, dieRoll, "B2");
       }
     }
     if (lockedB === 0 && B1.x === B2.x && B1.y === B2.y) {
@@ -353,15 +377,17 @@ function move(token, num, id) {
         ) {
           if (id[1] === "1") move(eval(id[0] + "2"), num, id[0] + "2");
           else move(eval(id[0] + "1"), num, id[0] + "1");
+          turnChange();
         }
         if (
           dieRoll === 6 &&
           ((id[0] === "A" && lockedA === 1 && wonA === 0) ||
             (id[0] === "B" && lockedB === 1 && wonB === 0))
-        )
+        ) {
           if (id[1] === "1") start(eval(id[0] + "2"), id[0] + "2");
           else start(eval(id[0] + "1"), id[0] + "1");
-
+          turnChange();
+        }
         noMoveSound.play();
       }
       isMoveOver = true;
