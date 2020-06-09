@@ -55,8 +55,8 @@ function initialize() {
   let winners = document.getElementById("winner");
   let child = winners.lastElementChild;
   while (child) {
-      winners.removeChild(child);
-      child = winner.lastElementChild;
+    winners.removeChild(child);
+    child = winner.lastElementChild;
   }
 
   let tokenElement = document.getElementById("A1");
@@ -198,10 +198,10 @@ function turn() {
           start(A2, "A2");
         }
       } else if (lockedA === 0 && wonA === 1) {
-        if(won.A1) {
-          move(A2, dieRoll, "A2")
+        if (won.A1) {
+          move(A2, dieRoll, "A2");
         } else {
-          move(A1, dieRoll, "A1")
+          move(A1, dieRoll, "A1");
         }
       }
     } else {
@@ -233,10 +233,10 @@ function turn() {
           start(B2, "B2");
         }
       } else if (lockedB === 0 && wonB === 1) {
-        if(won.B1) {
-          move(B2, dieRoll, "B2")
+        if (won.B1) {
+          move(B2, dieRoll, "B2");
         } else {
-          move(B1, dieRoll, "B1")
+          move(B1, dieRoll, "B1");
         }
       }
     } else {
@@ -347,6 +347,21 @@ function move(token, num, id) {
         token.x = old.x;
         token.y = old.y;
         moveInBoard(token, id, i + 1);
+        if (
+          (id[0] === "A" && lockedA === 0 && wonA === 0) ||
+          (id[0] === "B" && lockedB === 0 && wonB === 0)
+        ) {
+          if (id[1] === "1") move(eval(id[0] + "2"), num, id[0] + "2");
+          else move(eval(id[0] + "1"), num, id[0] + "1");
+        }
+        if (
+          dieRoll === 6 &&
+          ((id[0] === "A" && lockedA === 1 && wonA === 0) ||
+            (id[0] === "B" && lockedB === 1 && wonB === 0))
+        )
+          if (id[1] === "1") start(eval(id[0] + "2"), id[0] + "2");
+          else start(eval(id[0] + "1"), id[0] + "1");
+
         noMoveSound.play();
       }
       isMoveOver = true;
